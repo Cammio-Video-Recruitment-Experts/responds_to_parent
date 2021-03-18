@@ -1,7 +1,9 @@
 require 'responds_to_parent/action_controller'
 require 'responds_to_parent/selector_assertion'
 
-ActionController::Base.include RespondsToParent::ActionController
+ActiveSupport.on_load(:action_controller) do
+  ActionController::Base.include RespondsToParent::ActionController
+end
 
 where_to_include = [ActionController::TestCase]
 if defined?(ActionDispatch::Assertions::SelectorAssertions)
